@@ -29,10 +29,19 @@ class DetailFragment : Fragment() {
         viewmodel.loadTeams()
 
 
-        arguments?.let {
+        arguments?.let { it ->
             val index = it.getInt("position")
 
-            team = viewmodel.teams.value!![index]
+            viewmodel.teams.observe(viewLifecycleOwner){characters->
+                if (characters != null && index >= 0 && index < characters.size) {
+                    team = characters[index]
+                } else {
+                    // Handle invalid index or null teamsList
+                }
+
+            }
+
+
 
         }
     }
