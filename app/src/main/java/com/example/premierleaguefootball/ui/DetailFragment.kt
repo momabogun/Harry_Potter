@@ -26,20 +26,13 @@ class DetailFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        viewmodel.loadTeams()
 
 
         arguments?.let { it ->
             val index = it.getInt("position")
 
-            viewmodel.teams.observe(viewLifecycleOwner){characters->
-                if (characters != null && index >= 0 && index < characters.size) {
-                    team = characters[index]
-                } else {
-                    // Handle invalid index or null teamsList
-                }
+            team = viewmodel.teams.value?.get(index) ?: Team("","","","","","")
 
-            }
 
 
 
@@ -57,12 +50,11 @@ class DetailFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewmodel.teams.observe(viewLifecycleOwner){
             binding.speciesTV.text = team.species
             binding.houseTV.text = team.house
             binding.ancestoryTV.text = team.ancestry
             binding.actorTV.text = team.actor
-            binding.charactertv.setText(team.name)
+        binding.charactertv.text = team.name
             val imgUri = team.image.toUri().buildUpon().scheme("https").build()
             binding.cityPicIV.load(imgUri) {
                 error(R.drawable.images)
@@ -79,6 +71,5 @@ class DetailFragment : Fragment() {
 
 
 
-    }
 
 }
