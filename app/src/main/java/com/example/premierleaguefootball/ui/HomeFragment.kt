@@ -36,6 +36,11 @@ class HomeFragment : Fragment() {
             adapter.newData(it)
         }
 
+        binding.refreshBTN.setOnClickListener {
+            viewModel.loadChars()
+        }
+
+
 
 
     }
