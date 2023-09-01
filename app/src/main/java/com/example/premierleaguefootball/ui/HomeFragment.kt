@@ -12,7 +12,7 @@ import com.example.premierleaguefootball.databinding.FragmentHomeBinding
 class HomeFragment : Fragment() {
 
 
-    private val viewModel: TeamViewModel by viewModels()
+    private val viewModel: CharViewModel by viewModels()
 
 
     private lateinit var binding: FragmentHomeBinding

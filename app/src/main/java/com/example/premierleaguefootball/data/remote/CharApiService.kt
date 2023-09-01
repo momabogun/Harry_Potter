@@ -1,6 +1,6 @@
 package com.example.premierleaguefootball.data.remote
 
-import com.example.premierleaguefootball.data.model.Team
+import com.example.premierleaguefootball.data.model.Character
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import retrofit2.Retrofit
@@ -19,11 +19,12 @@ private val retrofit = Retrofit.Builder()
     .baseUrl(BASE_URL)
     .build()
 
-interface TeamApiService {
+interface CharApiService {
+
     @GET("characters")
-    suspend fun getTeams(): List<Team>
+    suspend fun getChars(): List<Character>
 }
 
-object TeamApi {
-    val retrofitService: TeamApiService by lazy { retrofit.create(TeamApiService::class.java) }
+object CharApi {
+    val retrofitService: CharApiService by lazy { retrofit.create(CharApiService::class.java) }
 }

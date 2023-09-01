@@ -1,26 +1,29 @@
 package com.example.premierleaguefootball.data
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.example.premierleaguefootball.data.model.Team
-import com.example.premierleaguefootball.data.remote.TeamApiService
-import kotlinx.coroutines.delay
-import java.lang.Exception
+import com.example.premierleaguefootball.data.db.CharacterDatabase
+import com.example.premierleaguefootball.data.model.Character
+import com.example.premierleaguefootball.data.remote.CharApi
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
+
 const val TAG = "AppRepositoryTAG"
-class AppRepository(private val api: TeamApiService) {
+class AppRepository(private val api: CharApi, private val database: CharacterDatabase) {
 
-    private val _teams = MutableLiveData<List<Team>>()
-    val teams: LiveData<List<Team>>
-        get() = _teams
+    val charList: LiveData<List<Character>> = database.characterDao.getAllChars()
 
-    suspend fun getTeams(){
-        try {
-            val teamList = api.getTeams()
-            _teams.postValue(teamList)
+    suspend fun deleteChar(character: Character){
+        database.characterDao.delete(character)
+    }
 
-        } catch (e: Exception){
-            Log.e(TAG,"Error loading Data from API: $e")
+    fun getChar(charId:String): LiveData<Character> = database.characterDao.getCharById(charId)
+
+
+    suspend fun getChars(){
+        withContext(Dispatchers.IO){
+            val newCharList = api.retrofitService.getChars()
+            database.characterDao.insertAll(newCharList)
         }
     }
 

@@ -1,6 +1,12 @@
 package com.example.premierleaguefootball.data.model
 
-class Team(
+import androidx.room.Entity
+import androidx.room.PrimaryKey
+
+@Entity
+data class Character(
+    @PrimaryKey
+    val id: String,
     val name: String,
     val image: String,
     val species: String,

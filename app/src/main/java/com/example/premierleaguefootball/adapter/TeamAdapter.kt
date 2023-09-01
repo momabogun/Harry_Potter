@@ -8,12 +8,12 @@ import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import coil.transform.RoundedCornersTransformation
 import com.example.premierleaguefootball.R
-import com.example.premierleaguefootball.data.model.Team
+import com.example.premierleaguefootball.data.model.Character
 import com.example.premierleaguefootball.databinding.ListItemBinding
 import com.example.premierleaguefootball.ui.HomeFragmentDirections
 
 class TeamAdapter(
-    private val dataset: List<Team>
+    private val dataset: List<Character>
 ) : RecyclerView.Adapter<TeamAdapter.ItemViewHolder>() {
 
 
@@ -36,7 +36,8 @@ class TeamAdapter(
         }
         holder.itemView.setOnClickListener {
             val navControler = holder.itemView.findNavController()
-            navControler.navigate(HomeFragmentDirections.actionHomeFragmentToDetailFragment(position))
+            navControler.navigate(MainFragmentDirections.actionMainFragmentToEditFragment())
+
         }
 
 

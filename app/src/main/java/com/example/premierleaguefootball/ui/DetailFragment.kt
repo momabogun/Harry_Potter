@@ -11,15 +11,15 @@ import androidx.navigation.fragment.findNavController
 import coil.load
 import coil.transform.RoundedCornersTransformation
 import com.example.premierleaguefootball.R
-import com.example.premierleaguefootball.data.model.Team
+import com.example.premierleaguefootball.data.model.Character
 import com.example.premierleaguefootball.databinding.FragmentDetailBinding
 
 class DetailFragment : Fragment() {
 
-    private val viewmodel: TeamViewModel by activityViewModels()
+    private val viewmodel: CharViewModel by activityViewModels()
     private lateinit var binding: FragmentDetailBinding
 
-    private lateinit var team: Team
+    private var contactId: String = ""
 
 
 
@@ -29,12 +29,7 @@ class DetailFragment : Fragment() {
 
 
         arguments?.let { it ->
-            val index = it.getInt("position")
-
-            team = viewmodel.teams.value?.get(index) ?: Team("","","","","","")
-
-
-
+            contactId = it.getString("charId","")
 
         }
     }
@@ -50,12 +45,15 @@ class DetailFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-            binding.speciesTV.text = team.species
-            binding.houseTV.text = team.house
-            binding.ancestoryTV.text = team.ancestry
-            binding.actorTV.text = team.actor
-        binding.charactertv.text = team.name
-            val imgUri = team.image.toUri().buildUpon().scheme("https").build()
+
+        viewmodel.getChar(contactId)
+
+            binding.speciesTV.text = character.species
+            binding.houseTV.text = character.house
+            binding.ancestoryTV.text = character.ancestry
+            binding.actorTV.text = character.actor
+        binding.charactertv.text = character.name
+            val imgUri = character.image.toUri().buildUpon().scheme("https").build()
             binding.cityPicIV.load(imgUri) {
                 error(R.drawable.images)
                 transformations(RoundedCornersTransformation(10F))
