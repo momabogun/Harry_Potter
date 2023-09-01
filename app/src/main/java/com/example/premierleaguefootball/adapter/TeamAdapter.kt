@@ -1,5 +1,6 @@
 package com.example.premierleaguefootball.adapter
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.net.toUri
@@ -10,15 +11,22 @@ import coil.transform.RoundedCornersTransformation
 import com.example.premierleaguefootball.R
 import com.example.premierleaguefootball.data.model.Character
 import com.example.premierleaguefootball.databinding.ListItemBinding
-import com.example.premierleaguefootball.ui.HomeFragment
 import com.example.premierleaguefootball.ui.HomeFragmentDirections
 
 class TeamAdapter(
-    private val dataset: List<Character>
+    private var dataset: List<Character>
 ) : RecyclerView.Adapter<TeamAdapter.ItemViewHolder>() {
 
 
     inner class ItemViewHolder(val binding: ListItemBinding) : RecyclerView.ViewHolder(binding.root)
+
+
+    @SuppressLint("NotifyDataSetChanged")
+    fun newData(newList: List<Character>){
+        dataset = newList
+        notifyDataSetChanged()
+
+    }
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {

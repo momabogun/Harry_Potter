@@ -28,15 +28,15 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
-        val recyclerView = binding.footballRV
+        val adapter = TeamAdapter(emptyList())
+        binding.footballRV.adapter = adapter
 
 
         viewModel.chars.observe(viewLifecycleOwner){
-            recyclerView.adapter = TeamAdapter(it)
+            adapter.newData(it)
         }
 
 
-        recyclerView.setHasFixedSize(true)
 
     }
 }

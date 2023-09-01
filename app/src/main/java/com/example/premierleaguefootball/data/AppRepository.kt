@@ -1,7 +1,6 @@
 package com.example.premierleaguefootball.data
 
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import com.example.premierleaguefootball.data.db.CharacterDatabase
 import com.example.premierleaguefootball.data.model.Character
 import com.example.premierleaguefootball.data.remote.CharApi

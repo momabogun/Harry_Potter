@@ -16,14 +16,14 @@ interface CharacterDao {
     suspend fun insertAll(memes: List<Character>)
 
     @Update
-    suspend fun update(meme: Character)
+    suspend fun update(character: Character)
 
     @Query("SELECT * FROM character WHERE id =:charId")
     fun getCharById(charId: String) : LiveData<Character>
 
 
     @Delete
-    suspend fun delete(meme: Character)
+    suspend fun delete(character: Character)
 
     @Query("SELECT * from character")
     fun getAllChars(): LiveData<List<Character>>
