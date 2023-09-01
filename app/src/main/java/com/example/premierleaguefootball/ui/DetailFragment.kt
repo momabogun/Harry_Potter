@@ -68,6 +68,7 @@ class DetailFragment : Fragment() {
 
         binding.deleteBTN.setOnClickListener {
             deleteChar()
+
         }
 
     }
