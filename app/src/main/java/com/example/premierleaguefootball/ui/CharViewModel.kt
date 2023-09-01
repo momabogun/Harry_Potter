@@ -42,11 +42,8 @@ class CharViewModel(application: Application) : AndroidViewModel(application) {
         }
     }
 
-    fun getChar(charId: String){
-        viewModelScope.launch(Dispatchers.IO) {
-            repository.getChar(charId)
-        }
-    }
+    fun getChar(charId: String): LiveData<Character> = repository.getChar(charId)
+
 
 
     init {

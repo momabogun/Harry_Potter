@@ -10,6 +10,7 @@ import coil.transform.RoundedCornersTransformation
 import com.example.premierleaguefootball.R
 import com.example.premierleaguefootball.data.model.Character
 import com.example.premierleaguefootball.databinding.ListItemBinding
+import com.example.premierleaguefootball.ui.HomeFragment
 import com.example.premierleaguefootball.ui.HomeFragmentDirections
 
 class TeamAdapter(
@@ -36,7 +37,7 @@ class TeamAdapter(
         }
         holder.itemView.setOnClickListener {
             val navControler = holder.itemView.findNavController()
-            navControler.navigate(MainFragmentDirections.actionMainFragmentToEditFragment())
+            navControler.navigate(HomeFragment
 
         }
 

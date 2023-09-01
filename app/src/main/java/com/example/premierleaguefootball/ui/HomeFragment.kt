@@ -31,7 +31,7 @@ class HomeFragment : Fragment() {
         val recyclerView = binding.footballRV
 
 
-        viewModel.teams.observe(viewLifecycleOwner){
+        viewModel.chars.observe(viewLifecycleOwner){
             recyclerView.adapter = TeamAdapter(it)
         }
 
