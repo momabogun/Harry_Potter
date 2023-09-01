@@ -37,7 +37,7 @@ class TeamAdapter(
         }
         holder.itemView.setOnClickListener {
             val navControler = holder.itemView.findNavController()
-            navControler.navigate(HomeFragment
+            navControler.navigate(HomeFragmentDirections.actionHomeFragmentToDetailFragment(item.id))
 
         }
 

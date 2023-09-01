@@ -67,20 +67,22 @@ class DetailFragment : Fragment() {
         }
 
         binding.deleteBTN.setOnClickListener {
-
-            val builder = AlertDialog.Builder(requireContext())
-            builder.setPositiveButton("Yes"){_, _ ->
-                viewModel.deleteChar(character)
-                findNavController().navigate(HomeFragmentD)
-
-                // had problems with directions
-            }
-            builder.setNegativeButton("No"){ _, _ ->}
-            builder.setTitle("Delete")
-            builder.setMessage("Are you sure you want to delete $name?")
-            builder.create().show()
+            deleteChar()
         }
 
+    }
+    fun deleteChar(){
+        val builder = AlertDialog.Builder(requireContext())
+        builder.setPositiveButton("Yes"){_, _ ->
+            viewModel.deleteChar(character)
+            findNavController().navigate(DetailFragmentDirections.actionDetailFragmentToHomeFragment())
+
+            // had problems with directions
+        }
+        builder.setNegativeButton("No"){ _, _ ->}
+        builder.setTitle("Delete")
+        builder.setMessage("Are you sure you want to delete ${character.name}?")
+        builder.create().show()
     }
 
 
