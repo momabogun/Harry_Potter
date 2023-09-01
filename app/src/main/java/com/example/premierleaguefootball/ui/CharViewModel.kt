@@ -46,9 +46,6 @@ class CharViewModel(application: Application) : AndroidViewModel(application) {
 
 
 
-    init {
-        loadChars()
-    }
 
     fun loadChars() {
         viewModelScope.launch {

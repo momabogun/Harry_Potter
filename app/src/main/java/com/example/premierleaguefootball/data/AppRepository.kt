@@ -13,7 +13,7 @@ class AppRepository(private val api: CharApi, private val database: CharacterDat
     val charList: LiveData<List<Character>> = database.characterDao.getAllChars()
 
     suspend fun deleteChar(character: Character){
-        database.characterDao.delete(character)
+        database.characterDao.delete(character.id)
     }
 
     fun getChar(charId:String): LiveData<Character> = database.characterDao.getCharById(charId)

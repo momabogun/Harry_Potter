@@ -22,8 +22,8 @@ interface CharacterDao {
     fun getCharById(charId: String) : LiveData<Character>
 
 
-    @Delete
-    suspend fun delete(character: Character)
+    @Query("DELETE FROM character WHERE id = :charId")
+    suspend fun delete(charId: String)
 
     @Query("SELECT * from character")
     fun getAllChars(): LiveData<List<Character>>
